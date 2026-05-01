@@ -1,0 +1,49 @@
+; Production MD for asphaltene/decane/water system: 50 ns at 2 fs
+integrator               = md
+dt                       = 0.002
+nsteps                   = 25000000
+
+comm_mode                = linear
+nstcomm                  = 100
+
+nstxout                  = 0
+nstvout                  = 0
+nstfout                  = 0
+nstlog                   = 5000
+nstenergy                = 5000
+nstxout-compressed       = 50000
+compressed-x-grps        = System
+
+continuation             = yes
+gen_vel                  = no
+
+cutoff-scheme            = Verlet
+nstlist                  = 20
+pbc                      = xyz
+
+coulombtype              = PME
+coulomb-modifier         = Potential-shift
+rcoulomb                 = 1.0
+epsilon-r                = 1
+
+vdwtype                  = Cut-off
+vdw-modifier             = Potential-shift
+rvdw                     = 1.0
+DispCorr                 = EnerPres
+
+constraints              = h-bonds
+constraint_algorithm     = LINCS
+lincs-order              = 4
+
+tcoupl                   = V-rescale
+tc-grps                  = System
+tau_t                    = 0.5
+ref_t                    = 300
+nsttcouple               = 20
+
+pcoupl                   = Berendsen
+pcoupltype               = isotropic
+tau_p                    = 5.0
+ref_p                    = 1.01325
+compressibility          = 4.5e-5
+nstpcouple               = 20
