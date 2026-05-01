@@ -2,20 +2,32 @@
 
 This folder contains the `.mdp` files and command sequence to run a full MD workflow on Bridges-2 for the decane-20 bundle case.
 
-Relabeling is intentionally excluded here because that step is done on your local computer before upload.
+`asph_in_decane_20` means: **20 HTBHBC (asphaltene) molecules in a decane slab system** with Packmol block order
+`4000 SOL | 20 HTB | 3000 DEC | 4000 SOL`.
 
 ## Folder contents
 
+- `topol_decane20_bundle.top`
 - `mdp_files/em_decane20_bundle.mdp`
 - `mdp_files/nvt_decane20_bundle.mdp`
 - `mdp_files/npt_decane20_bundle.mdp`
 - `mdp_files/md_decane20_bundle_prod_50ns.mdp`
 
-## Required external files (prepare/upload separately)
+## ITP includes used by `topol_decane20_bundle.top`
+
+These are referenced from:
+`../pre-simulation/itp_files/`
+
+- `ff_OPLSAA__defaults.itp`
+- `water_TIP3P__tip3p_atomtypes.itp`
+- `water_TIP3P__tip3p.itp`
+- `mol_HTB__HTBHBC_ligpargen.gmx.itp`
+- `mol_DEC__decane_atomtypes_for_topol.itp`
+- `mol_DEC__decane_molecule_for_topol.itp`
+
+## Required external file (prepare/upload separately)
 
 - Coordinates already prepared for GROMACS naming (example: `decane20_for_gmx.pdb`)
-- Topology: `topol_decane20_bundle.top`
-- Any included `.itp` files referenced by your topology
 
 ## Environment
 
@@ -42,7 +54,7 @@ mpirun -np 1 gmx_mpi editconf \
 mpirun -np 1 gmx_mpi grompp \
   -f gromacs/mdp_files/em_decane20_bundle.mdp \
   -c decane20_boxed.gro \
-  -p topol_decane20_bundle.top \
+  -p gromacs/topol_decane20_bundle.top \
   -o decane20_em.tpr \
   -maxwarn 5
 
@@ -57,7 +69,7 @@ mpirun -np 1 gmx_mpi mdrun \
 mpirun -np 1 gmx_mpi grompp \
   -f gromacs/mdp_files/nvt_decane20_bundle.mdp \
   -c decane20_em.gro \
-  -p topol_decane20_bundle.top \
+  -p gromacs/topol_decane20_bundle.top \
   -o decane20_nvt.tpr \
   -maxwarn 5
 
@@ -75,7 +87,7 @@ mpirun -np 1 gmx_mpi grompp \
   -c decane20_nvt.gro \
   -r decane20_nvt.gro \
   -t decane20_nvt.cpt \
-  -p topol_decane20_bundle.top \
+  -p gromacs/topol_decane20_bundle.top \
   -o decane20_npt.tpr \
   -maxwarn 5
 
@@ -92,7 +104,7 @@ mpirun -np 1 gmx_mpi grompp \
   -f gromacs/mdp_files/md_decane20_bundle_prod_50ns.mdp \
   -c decane20_npt.gro \
   -t decane20_npt.cpt \
-  -p topol_decane20_bundle.top \
+  -p gromacs/topol_decane20_bundle.top \
   -o decane20_md50ns.tpr \
   -maxwarn 5
 
@@ -106,4 +118,4 @@ mpirun -np 1 gmx_mpi mdrun \
 
 - If GPU flags fail on your node, retry with:
   `-nb gpu -pme gpu` only.
-- Ensure all paths in `topol_decane20_bundle.top` are valid on Bridges-2.
+- Ensure all `#include` paths in `gromacs/topol_decane20_bundle.top` remain valid on Bridges-2.

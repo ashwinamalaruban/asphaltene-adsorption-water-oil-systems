@@ -1,0 +1,18 @@
+; Topology for asph_in_decane_20 (Packmol order: A/B/C/D)
+; 4000 SOL | 20 HTB | 3000 DEC | 4000 SOL
+
+#include "../pre-simulation/itp_files/ff_OPLSAA__defaults.itp"
+#include "../pre-simulation/itp_files/water_TIP3P__tip3p_atomtypes.itp"
+#include "../pre-simulation/itp_files/mol_DEC__decane_atomtypes_for_topol.itp"
+#include "../pre-simulation/itp_files/mol_HTB__HTBHBC_ligpargen.gmx.itp"
+#include "../pre-simulation/itp_files/water_TIP3P__tip3p.itp"
+#include "../pre-simulation/itp_files/mol_DEC__decane_molecule_for_topol.itp"
+
+[ system ]
+Asphaltene in decane slab (asph_in_decane_20)
+
+[ molecules ]
+SOL    4000
+HTB    20
+DEC    3000
+SOL    4000
