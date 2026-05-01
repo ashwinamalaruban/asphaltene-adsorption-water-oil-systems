@@ -1,0 +1,7 @@
+; OPLS-AA Lennard-Jones types for TIP3P water (matches tip3p.itp)
+; Source: GROMACS share/top/oplsaa.ff/ffnonbonded.itp (#else branch, normal H mass)
+; Use with [ defaults ] from forcefield_oplsaa_defaults.itp
+
+[ atomtypes ]
+ opls_111 OW 8 15.99940 -0.834 A 3.15061e-01 6.36386e-01
+ opls_112 HW 1 1.00800 0.417 A 0.00000e+00 0.00000e+00

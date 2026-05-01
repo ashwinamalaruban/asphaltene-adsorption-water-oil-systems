@@ -1,0 +1,32 @@
+# LigParGen — example commands (this github_push layout)
+#
+# Prereqs: Docker Desktop (macOS: enable Rosetta for x86/amd64 if on Apple Silicon).
+# One-time: build the image from this repo root (directory that contains gromacs_ligpargen/).
+
+REPO="/path/to/github_push"    # <-- set to your clone, e.g. .../Simulations/github_push
+cd "$REPO"
+
+./gromacs_ligpargen/docker/build.sh
+
+python3 step3_ligpargen.py \
+  -i packmol_initial_system_generation/single_molecules_pdb/hexane.pdb \
+  -n hexane -p gromacs_ligpargen/ligpargen_runs/hexane -r HEX
+
+python3 step3_ligpargen.py \
+  -i packmol_initial_system_generation/single_molecules_pdb/decane.pdb \
+  -n decane -p gromacs_ligpargen/ligpargen_runs/decane -r DEC
+
+python3 step3_ligpargen.py \
+  -i packmol_initial_system_generation/single_molecules_pdb/heptane.pdb \
+  -n heptane -p gromacs_ligpargen/ligpargen_runs/heptane -r HEP
+
+
+python3 step3_ligpargen.py \
+  -i packmol_initial_system_generation/single_molecules_pdb/HTBHBC.pdb \
+  -n htbhbc -p gromacs_ligpargen/ligpargen_runs/htbhbc -r HTB
+
+
+# Outputs: under the -p directory, look for *.gmx.itp and *.gmx.gro
+#
+# If -i is not found: set PACKMOL_PROJECT_ROOT to the folder that contains single_molecules_pdb/
+# or fix the path after -i.

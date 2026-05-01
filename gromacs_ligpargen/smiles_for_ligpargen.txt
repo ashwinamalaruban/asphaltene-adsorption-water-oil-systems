@@ -1,0 +1,16 @@
+# LigParGen: https://zarbi.chem.yale.edu/ligpargen/  — one job per compound.
+# Neutral: charge 0, model 1.14*CM1A-LBCC. Server limit ~200 atoms.
+#
+# Local Docker (this bundle): full shell examples in ../LIGPARGEN_EXAMPLES.txt
+# (repo root = directory containing step3_ligpargen.py and gromacs_ligpargen/).
+
+# --- Hexane (SMILES is fine; matches PACKMOL hexane.pdb) ---
+CCCCCC
+
+# --- Asphaltene (your model is NOT pyrene) ---
+# Prefer uploading the 3D PDB you actually simulate: all atoms + hydrogens + CONECT.
+# After:  python3 step2_monomer_pdbs.py
+# use:    single_molecules_pdb/asphaltene.pdb   (copied from ~/asphaltene.pdb when that file exists)
+#
+# RDKit round-trip SMILES from fused aromatics is often wrong for LigParGen; do not rely on an auto SMILES
+# unless you draw the correct aromatic structure in the LigParGen JSME editor and export SMILES from there.

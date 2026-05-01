@@ -1,0 +1,9 @@
+REMARK  TIP3P water; residue SOL cols 18-20; OW HW1 HW2 (gromacs_top/tip3p_oplsaa/tip3p.itp)
+REMARK  OH = 0.9572 A, HOH = 104.52 deg
+HETATM    1  OW  SOL A   1       0.000   0.000   0.000  1.00  0.00           O
+HETATM    2 HW1  SOL A   1       0.757   0.585   0.000  1.00  0.00           H
+HETATM    3 HW2  SOL A   1      -0.757   0.585   0.000  1.00  0.00           H
+CONECT    1    2    3
+CONECT    2    1
+CONECT    3    1
+END

@@ -1,0 +1,6 @@
+; OPLS-AA combination rules (required before tip3p_atomtypes.itp)
+; Source: GROMACS share/top/oplsaa.ff/forcefield.itp (defaults only)
+
+[ defaults ]
+; nbfunc comb-rule gen-pairs fudgeLJ fudgeQQ
+1 3 yes 0.5 0.5

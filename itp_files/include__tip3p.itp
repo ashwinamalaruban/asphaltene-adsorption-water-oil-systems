@@ -1,0 +1,8 @@
+; Convenience bundle: OPLS defaults + TIP3P atom types + TIP3P water molecule.
+; In your topol.top, add once near the top (after [ defaults ] if you already
+; have OPLS defaults from another include, omit forcefield_oplsaa_defaults.itp
+; and avoid duplicating [ defaults ]).
+
+#include "forcefield_oplsaa_defaults.itp"
+#include "tip3p_atomtypes.itp"
+#include "tip3p.itp"

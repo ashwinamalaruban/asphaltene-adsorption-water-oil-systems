@@ -1,0 +1,37 @@
+# PACKMOL input: water | HTBHBC | oil (decane) | water (mirrors former step3_packmol.inp)
+# Run from this directory (github_push/packmol_initial_system_generation):
+#   packmol < step2_packmol.inp
+#
+# Monomer PDBs here use GROMACS-ready residue names: SOL (TIP3P), HTB, DEC.
+# Output: packed_decane_htbhbc20_dec3000_water8000.pdb (matches main tree step3_packmol.inp).
+
+tolerance 2.0
+filetype pdb
+output packed_decane_htbhbc20_dec3000_water8000.pdb
+seed -1
+
+# --- Left water slab ---
+structure single_molecules_pdb/water.pdb
+  number 4000
+  inside box 0. 0. 0. 80 80 19
+end structure
+
+# --- Asphaltene slab ---
+structure single_molecules_pdb/HTBHBC.pdb
+  number 20
+  inside box 5. 5. 50. 75 75 150
+end structure
+
+# --- Oil ---
+structure single_molecules_pdb/decane.pdb
+  number 3000
+  inside box 0. 0. 19 80 80 181
+end structure
+
+# --- Right water slab ---
+structure single_molecules_pdb/water.pdb
+  number 4000
+  inside box 0. 0. 181. 80. 80. 200.
+end structure
+
+
